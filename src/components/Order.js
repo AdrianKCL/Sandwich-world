@@ -1,14 +1,49 @@
 import React from "react";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+    x: "100vw",
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      type: "spring",
+      mass: 0.4,
+      dumping: 8,
+      when: "beforeChildren",
+      staggerChildren: 0.4,
+    },
+  },
+};
+
+const childVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: { opacity: 1 },
+};
 
 const Order = ({ sandwich }) => {
   return (
-    <div className="container order">
+    <motion.div
+      className="container order"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <h2>Thank you for your order :)</h2>
-      <p>You ordered a {sandwich.base} Sandwich with:</p>
-      {sandwich.toppings.map((topping) => (
-        <div key={topping}>{topping}</div>
-      ))}
-    </div>
+      <motion.p variants={childVariants}>
+        You ordered a {sandwich.type} Sandwich with:
+      </motion.p>
+      <motion.div variants={childVariants}>
+        {sandwich.toppings.map((topping) => (
+          <div key={topping}>{topping}</div>
+        ))}
+      </motion.div>
+    </motion.div>
   );
 };
 

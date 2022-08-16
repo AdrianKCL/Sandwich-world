@@ -7,10 +7,10 @@ import Toppings from "./components/Toppings";
 import Order from "./components/Order";
 
 function App() {
-  const [sandwich, setSandwich] = useState({ base: "", toppings: [] });
+  const [sandwich, setSandwich] = useState({ type: "", toppings: [] });
 
-  const addType = (base) => {
-    setSandwich({ ...sandwich, base });
+  const addType = (type) => {
+    setSandwich({ ...sandwich, type });
   };
 
   const addTopping = (topping) => {
@@ -27,7 +27,7 @@ function App() {
     <>
       <Header />
       <Switch>
-        <Route path="/base">
+        <Route path="/type">
           <Type addType={addType} sandwich={sandwich} />
         </Route>
         <Route path="/toppings">
