@@ -23,6 +23,12 @@ const containerVariants = {
     x: 0,
     transition: { type: "spring", delay: 0.5 },
   },
+  exit: {
+    x: "-100vw",
+    transition: {
+      ease: "easeInOut",
+    },
+  },
 };
 const nextVariants = {
   hidden: { x: "-100vw" },
@@ -44,6 +50,7 @@ const Type = ({ addType, sandwich }) => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
+      exit="exit"
     >
       <h3>Step 1: Choose Your Type</h3>
       <ul>
